@@ -199,7 +199,7 @@ class App(Base):
         # Set up the API.
         self.api = FastAPI()
         
-        self.handlers: Optional[Callable] = None
+        self.handler: Optional[Callable] = None
         
         
         self.add_cors()
