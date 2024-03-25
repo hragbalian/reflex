@@ -198,6 +198,10 @@ class App(Base):
 
         # Set up the API.
         self.api = FastAPI()
+        
+        self.handlers: Optional[Callable] = None
+        
+        
         self.add_cors()
         self.add_default_endpoints()
 
@@ -264,13 +268,19 @@ class App(Base):
         """
         return f"<App state={self.state.__name__ if self.state else None}>"
 
-    def __call__(self, **kwargs) -> FastAPI:
-        """Run the backend api instance.
+    def __call__(self) -> Union[FastAPI, ASGIApp]:
+        """Run the backend api instance or wrap it with a handler for AWS Lambda.
+
+        Args:
+            handler: Optional handler for AWS Lambda integration, e.g., Mangum.
 
         Returns:
-            The backend api.
+            The backend api or a wrapped ASGI application for AWS Lambda.
         """
-        return self.api
+        if self.handler:
+            return self.handler(self.api)
+        else:
+            return self.api
 
     def add_default_endpoints(self):
         """Add default api endpoints (ping)."""
