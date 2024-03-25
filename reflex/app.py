@@ -264,7 +264,7 @@ class App(Base):
         """
         return f"<App state={self.state.__name__ if self.state else None}>"
 
-    def __call__(self) -> FastAPI:
+    def __call__(self, **kwargs) -> FastAPI:
         """Run the backend api instance.
 
         Returns:
