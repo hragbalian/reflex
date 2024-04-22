@@ -175,7 +175,7 @@ class Markdown(Component):
                 "remark-unwrap-images@4.0.0": [
                     ImportVar(tag=_REMARK_UNWRAP_IMAGES._var_name, is_default=True)
                 ],
-                "remark-mermaid@0.2.0": [
+                "remark-mermaidjs@6.0.0": [
                     ImportVar(tag=_REMARK_MERMAID._var_name, is_default=True)
                 ],
                 "rehype-katex@6.0.3": [
