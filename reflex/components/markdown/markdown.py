@@ -32,13 +32,13 @@ _MOCK_ARG = Var.create_safe("")
 _REMARK_MATH = Var.create_safe("remarkMath", _var_is_local=False)
 _REMARK_GFM = Var.create_safe("remarkGfm", _var_is_local=False)
 _REMARK_UNWRAP_IMAGES = Var.create_safe("remarkUnwrapImages", _var_is_local=False)
-_REMARK_MERMAID = Var.create_safe("remarkMermaid", _var_is_local=False)
-_REMARK_PLUGINS = Var.create_safe([_REMARK_MATH, _REMARK_GFM, _REMARK_UNWRAP_IMAGES, _REMARK_MERMAID])
+_REMARK_PLUGINS = Var.create_safe([_REMARK_MATH, _REMARK_GFM, _REMARK_UNWRAP_IMAGES])
 
 # Special rehype plugins.
 _REHYPE_KATEX = Var.create_safe("rehypeKatex", _var_is_local=False)
 _REHYPE_RAW = Var.create_safe("rehypeRaw", _var_is_local=False)
-_REHYPE_PLUGINS = Var.create_safe([_REHYPE_KATEX, _REHYPE_RAW])
+_REHYPE_MERMAID = Var.create_safe("rehypeMermaid", _var_is_local=False)
+_REHYPE_PLUGINS = Var.create_safe([_REHYPE_KATEX, _REHYPE_RAW, _REHYPE_MERMAID])
 
 # These tags do NOT get props passed to them
 NO_PROPS_TAGS = ("ul", "ol", "li")
@@ -175,14 +175,14 @@ class Markdown(Component):
                 "remark-unwrap-images@4.0.0": [
                     ImportVar(tag=_REMARK_UNWRAP_IMAGES._var_name, is_default=True)
                 ],
-                "remark-mermaid-plugin@1.0.2": [
-                    ImportVar(tag=_REMARK_MERMAID._var_name, is_default=True)
-                ],
                 "rehype-katex@6.0.3": [
                     ImportVar(tag=_REHYPE_KATEX._var_name, is_default=True)
                 ],
                 "rehype-raw@6.1.1": [
                     ImportVar(tag=_REHYPE_RAW._var_name, is_default=True)
+                ],
+                 "rehype-mermaid@2.1.0": [
+                    ImportVar(tag=_REHYPE_MERMAID._var_name, is_default=True)
                 ],
             }
         )
